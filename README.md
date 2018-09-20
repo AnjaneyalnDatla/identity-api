@@ -1,17 +1,17 @@
-**Identity API**
+#Identity API
 
 Identity and access management api to authenticate and authorise users.
 
 ---
 
-## Tools Needed
+** Tools Needed **
 
 ```
  Eclipse latest version, JDK 8, Gradle,Git.
 ```
 ---
 
-## Code Installation
+** Code Installation **
 ```
  Choose a folder in your local
  git clone `(source code url)` 
@@ -19,7 +19,7 @@ Identity and access management api to authenticate and authorise users.
 ```
 ---
 
-## Code Commit
+** Code Commit **
 
 ```
  git add .
@@ -27,10 +27,11 @@ Identity and access management api to authenticate and authorise users.
  git pull
  git push -u origin master
 ```
-## License
+
+** License **
 
 Restricted to A2Nine SRKR Team
 
-## Authors
+** Authors **
 
  A2Nine team.
