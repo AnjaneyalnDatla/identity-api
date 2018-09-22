@@ -2,33 +2,54 @@ package com.srkr.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="Organization")
 public class Organization {
 	
-	private String id;
 	
+	@Id
+	@GeneratedValue
+	@Column(name="id")
+	private Long id;
+	
+	@Column(name="name")
 	private String name;
 	
+	@Column(name="description")
 	private String description;
 	
+	@Column(name="streetaddress")
 	private String streetAddress;
 	
+	@Column(name="city")
 	private String city;
 	
+	@Column(name="state")
 	private String state;
 	
+	@Column(name="zipcode")
 	private int zipcode;
 	
+	@Column(name="country")
 	private String country;
 	
+	@Column(name="landmark")
 	private String landmark;
 	
+	@Column(name="dateupdated")
 	private Date dateUpdated;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -2,34 +2,55 @@ package com.srkr.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+@Entity
+@Table (name="Credentials")
 public class Credentials {
 
-	private String id;
+	@Id
+	@GeneratedValue
+	@Column(name="id")
+	private Long id;
 	
-	private String personID;
+	@ManyToOne
+	@JoinColumn(name="id")	
+	private Person person;
 	
+	@Column(name="username")
 	private String userName;
 	
+	@Column(name="password")
+	private String password;
+	
+	@Column(name="isactive")
 	private Date isActive;
 	
+	@Column(name="lastreset")
 	private Date lastReset;
 	
+	@Column(name="dateupdated")
 	private Date dateUpdated;
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getPersonID() {
-		return personID;
+	public Person getPerson() {
+		return person;
 	}
 
-	public void setPersonID(String personID) {
-		this.personID = personID;
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	public String getUserName() {
@@ -40,6 +61,14 @@ public class Credentials {
 		this.userName = userName;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public Date getIsActive() {
 		return isActive;
 	}

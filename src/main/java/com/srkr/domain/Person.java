@@ -1,45 +1,86 @@
 package com.srkr.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="Person")
 public class Person {
-
-	private String id;
 	
+	@Id
+	@GeneratedValue
+	@Column(name="id")
+	private Long id;
+	
+	@Column(name="firstname")
 	private String firstName;
 	
+	@Column(name="middlename")
 	private String middleName;
 	
+	@Column(name="lastname")
 	private String lastName;
 	
-	private String cellPhone;
+	@Column(name="cellphone")
+	private Long cellPhone;
 	
-	private String homePhone;
+	@Column(name="homephone")
+	private Long homePhone;
 	
-	private String officePhone;
+	@Column(name="officephone")
+	private Long officePhone;
 	
+	@Column(name="emailaddress")
 	private String emailAddress;
 	
-	private int organizationID;
+	@ManyToOne
+	@JoinColumn(name="id")	
+	private Organization organization;
 	
-	private int departmentID;
+	@ManyToOne
+	@JoinColumn(name="id")	
+	private Department departmentID;
 	
+	@Column(name="id")
 	private String designation;
 	
-	private int personRole;
+	@ManyToOne
+	@JoinColumn(name="id")	
+	private PersonRole personRole;
 	
-	//private ValueHolderInterface personRole;
-	/* import eclipse persistance jar ? or can this be done any other way ? */
+	// personRole many to one or not ? 
 	
-	private int supervisor;
+	@ManyToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="supervisor")
+	private Person supervisor;
+	//Do we want to rename this column to supervisor_id instead ?
 	
+	@Column(name="dateUpdated")
 	private Date dateUpdated;
 	
-	public String getId() {
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name="USERADDRESS",
+				joinColumns= {@JoinColumn(name="id")},
+				inverseJoinColumns={@JoinColumn(name="id")})
+	private Set<Address> addresses = new HashSet<Address>();
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -67,27 +108,27 @@ public class Person {
 		this.lastName = lastName;
 	}
 
-	public String getCellPhone() {
+	public Long getCellPhone() {
 		return cellPhone;
 	}
 
-	public void setCellPhone(String cellPhone) {
+	public void setCellPhone(Long cellPhone) {
 		this.cellPhone = cellPhone;
 	}
 
-	public String getHomePhone() {
+	public Long getHomePhone() {
 		return homePhone;
 	}
 
-	public void setHomePhone(String homePhone) {
+	public void setHomePhone(Long homePhone) {
 		this.homePhone = homePhone;
 	}
 
-	public String getOfficePhone() {
+	public Long getOfficePhone() {
 		return officePhone;
 	}
 
-	public void setOfficePhone(String officePhone) {
+	public void setOfficePhone(Long officePhone) {
 		this.officePhone = officePhone;
 	}
 
@@ -99,19 +140,19 @@ public class Person {
 		this.emailAddress = emailAddress;
 	}
 
-	public int getOrganizationID() {
-		return organizationID;
+	public Organization getOrganization() {
+		return organization;
 	}
 
-	public void setOrganizationID(int organizationID) {
-		this.organizationID = organizationID;
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 
-	public int getDepartmentID() {
+	public Department getDepartmentID() {
 		return departmentID;
 	}
 
-	public void setDepartmentID(int departmentID) {
+	public void setDepartmentID(Department departmentID) {
 		this.departmentID = departmentID;
 	}
 
@@ -123,19 +164,19 @@ public class Person {
 		this.designation = designation;
 	}
 
-	public int getPersonRole() {
+	public PersonRole getPersonRole() {
 		return personRole;
 	}
 
-	public void setPersonRole(int personRole) {
+	public void setPersonRole(PersonRole personRole) {
 		this.personRole = personRole;
 	}
 
-	public int getSupervisor() {
+	public Person getSupervisor() {
 		return supervisor;
 	}
 
-	public void setSupervisor(int supervisor) {
+	public void setSupervisor(Person supervisor) {
 		this.supervisor = supervisor;
 	}
 
@@ -147,5 +188,12 @@ public class Person {
 		this.dateUpdated = dateUpdated;
 	}
 
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
+	}	
 	
 }

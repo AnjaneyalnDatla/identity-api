@@ -1,22 +1,48 @@
 package com.srkr.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="Lab")
 public class Lab {
-
-	private String id;
 	
+	@Id
+	@GeneratedValue
+	@Column(name="id")
+	private Long id;
+	
+	@Column(name="name")
 	private String name;
 	
+	@Column(name="description")
 	private String description;
 	
+	@Column(name="dateupdated")
 	private Date dateUpdated;
+	
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name="DEPARTMENTLAB",
+				joinColumns= {@JoinColumn(name="id")},
+				inverseJoinColumns={@JoinColumn(name="id")})
+	private Set<Department> departments = new HashSet<Department>();
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -43,7 +69,13 @@ public class Lab {
 	public void setDateUpdated(Date dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
-	
-	
-	
+
+	public Set<Department> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(Set<Department> departments) {
+		this.departments = departments;
+	}
+
 }

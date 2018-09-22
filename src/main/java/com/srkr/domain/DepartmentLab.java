@@ -1,24 +1,32 @@
 package com.srkr.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="DepartmentLab")
+//department_lab ?
 public class DepartmentLab {
 	
-	private String departmentID;
 	
-	private String labID;
+	/*This class is probably not needed */
+	private Long departmentID;
+	
+	private Long labID;
 
-	public String getDepartmentID() {
+	public Long getDepartmentID() {
 		return departmentID;
 	}
 
-	public void setDepartmentID(String departmentID) {
+	public void setDepartmentID(Long departmentID) {
 		this.departmentID = departmentID;
 	}
 
-	public String getLabID() {
+	public Long getLabID() {
 		return labID;
 	}
 
-	public void setLabID(String labID) {
+	public void setLabID(Long labID) {
 		this.labID = labID;
 	}
 	
