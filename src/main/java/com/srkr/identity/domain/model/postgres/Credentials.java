@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 public class Credentials {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -34,9 +35,6 @@ public class Credentials {
 	
 	@Column(name="lastreset")
 	private Date lastReset;
-	
-	@Column(name="dateupdated")
-	private Date dateUpdated;
 
 	public Long getId() {
 		return id;
@@ -85,14 +83,5 @@ public class Credentials {
 	public void setLastReset(Date lastReset) {
 		this.lastReset = lastReset;
 	}
-
-	public Date getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
-	}
-	
 	
 }

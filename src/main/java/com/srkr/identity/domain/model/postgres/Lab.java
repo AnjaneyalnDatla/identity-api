@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 public class Lab {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -26,10 +27,7 @@ public class Lab {
 	
 	@Column(name="description")
 	private String description;
-	
-	@Column(name="dateupdated")
-	private Date dateUpdated;
-	
+
 	@ManyToMany(cascade = {CascadeType.ALL})
 	private Set<Department> departments = new HashSet<Department>();
 
@@ -55,14 +53,6 @@ public class Lab {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Date getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
 	}
 
 	public Set<Department> getDepartments() {

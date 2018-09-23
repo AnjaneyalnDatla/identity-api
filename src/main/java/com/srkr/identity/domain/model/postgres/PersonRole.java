@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,9 +14,9 @@ import javax.persistence.Table;
 public class PersonRole {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private String id;
+	private Long id;
 	
 	@Column(name="name")
 	private String name;
@@ -23,14 +24,11 @@ public class PersonRole {
 	@Column(name="description")
 	private String description;
 	
-	@Column(name="dateupdated")
-	private Date dateUpdated;
-
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -50,14 +48,5 @@ public class PersonRole {
 		this.description = description;
 	}
 
-	public Date getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
-	}
-	
-	
 
 }

@@ -1,10 +1,9 @@
 package com.srkr.identity.domain.model.postgres;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,7 +13,7 @@ public class Organization {
 	
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -41,9 +40,6 @@ public class Organization {
 	
 	@Column(name="landmark")
 	private String landmark;
-	
-	@Column(name="dateupdated")
-	private Date dateUpdated;
 
 	public Long getId() {
 		return id;
@@ -117,13 +113,4 @@ public class Organization {
 		this.landmark = landmark;
 	}
 
-	public Date getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
-	}
-	
-	
 }

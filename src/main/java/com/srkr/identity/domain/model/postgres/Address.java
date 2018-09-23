@@ -1,6 +1,5 @@
 package com.srkr.identity.domain.model.postgres;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Address {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -40,9 +40,6 @@ public class Address {
 	
 	@Column(name="landmark")
 	private String landmark;
-	
-	@Column(name="dateUpdated")
-	private Date dateUpdated;
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name="USERADDRESS",
@@ -104,14 +101,6 @@ public class Address {
 
 	public void setLandmark(String landmark) {
 		this.landmark = landmark;
-	}
-
-	public Date getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
 	}
 
 	public Set<Person> getPersons() {

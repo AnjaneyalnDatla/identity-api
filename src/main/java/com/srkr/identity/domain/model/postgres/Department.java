@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
@@ -20,7 +21,7 @@ import javax.persistence.Table;
 public class Department {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -29,10 +30,7 @@ public class Department {
 	
 	@Column(name="description")
 	private String description;
-	
-	@Column(name="dateupdated")
-	private Date dateUpdated;
-	
+
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name="DEPARTMENTLAB",
 				joinColumns= {@JoinColumn(referencedColumnName="id")},
@@ -61,14 +59,6 @@ public class Department {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Date getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
 	}
 
 	public Set<Lab> getLabs() {

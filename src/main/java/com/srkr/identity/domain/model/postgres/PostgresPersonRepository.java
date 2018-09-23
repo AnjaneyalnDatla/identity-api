@@ -7,6 +7,8 @@ public interface PostgresPersonRepository extends Repository<Person, Long>{
 
 	Person save(Person person);
 	
+	Person delete(Person person);
+	
 	Person findByFirstName(String firstName);
 	
 	Person findByLastName(String lastName);

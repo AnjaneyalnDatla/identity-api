@@ -1,6 +1,5 @@
 package com.srkr.identity.domain.model.postgres;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class Person {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
@@ -45,31 +45,25 @@ public class Person {
 	@Column(name="emailaddress")
 	private String emailAddress;
 	
-	@ManyToOne
-	@JoinColumn(referencedColumnName="id")	
+	@ManyToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="organisation_id",referencedColumnName="id")	
 	private Organization organization;
 	
-	@ManyToOne
-	@JoinColumn(referencedColumnName="id")	
-	private Department departmentID;
+	@ManyToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="department_id",referencedColumnName="id")	
+	private Department department;
 	
 	@Column(name="designation")
 	private String designation;
 	
-	@ManyToOne
-	@JoinColumn(referencedColumnName="id")	
+	@ManyToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="person_role",referencedColumnName="id")	
 	private PersonRole personRole;
 	
-	// personRole many to one or not ? 
-	
 	@ManyToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(referencedColumnName="id")
+	@JoinColumn(name="supervisor",referencedColumnName="id")
 	private Person supervisor;
-	//Do we want to rename this column to supervisor_id instead ?
-	
-	@Column(name="dateUpdated")
-	private Date dateUpdated;
-	
+
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name="USERADDRESS",
 				joinColumns= {@JoinColumn(referencedColumnName="id")},
@@ -148,12 +142,12 @@ public class Person {
 		this.organization = organization;
 	}
 
-	public Department getDepartmentID() {
-		return departmentID;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDepartmentID(Department departmentID) {
-		this.departmentID = departmentID;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public String getDesignation() {
@@ -180,13 +174,6 @@ public class Person {
 		this.supervisor = supervisor;
 	}
 
-	public Date getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
-	}
 
 	public Set<Address> getAddresses() {
 		return addresses;
