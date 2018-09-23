@@ -1,6 +1,5 @@
 package com.srkr.identity.domain.model.postgres;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,8 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -32,9 +31,9 @@ public class Department {
 	private String description;
 
 	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="DEPARTMENTLAB",
+	@JoinTable(name="DEPARTMENT_LAB",
 				joinColumns= {@JoinColumn(referencedColumnName="id")},
-				inverseJoinColumns={@JoinColumn(referencedColumnName="id")})
+				inverseJoinColumns={@JoinColumn(name="lab_id",referencedColumnName="id")})
 	private Set<Lab> labs = new HashSet<Lab>();
 
 	public Long getId() {

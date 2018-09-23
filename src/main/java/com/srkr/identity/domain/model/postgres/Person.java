@@ -34,20 +34,20 @@ public class Person {
 	private String lastName;
 	
 	@Column(name="cellphone")
-	private Long cellPhone;
+	private String cellPhone;
 	
 	@Column(name="homephone")
-	private Long homePhone;
+	private String homePhone;
 	
 	@Column(name="officephone")
-	private Long officePhone;
+	private String officePhone;
 	
 	@Column(name="emailaddress")
 	private String emailAddress;
 	
 	@ManyToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="organisation_id",referencedColumnName="id")	
-	private Organization organization;
+	private Organisation organization;
 	
 	@ManyToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="department_id",referencedColumnName="id")	
@@ -65,9 +65,9 @@ public class Person {
 	private Person supervisor;
 
 	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="USERADDRESS",
+	@JoinTable(name="PERSON_ADDRESS",
 				joinColumns= {@JoinColumn(referencedColumnName="id")},
-				inverseJoinColumns={@JoinColumn(referencedColumnName="id")})
+				inverseJoinColumns={@JoinColumn(name="address_id",referencedColumnName="id")})
 	private Set<Address> addresses = new HashSet<Address>();
 
 	public Long getId() {
@@ -102,27 +102,27 @@ public class Person {
 		this.lastName = lastName;
 	}
 
-	public Long getCellPhone() {
+	public String getCellPhone() {
 		return cellPhone;
 	}
 
-	public void setCellPhone(Long cellPhone) {
+	public void setCellPhone(String cellPhone) {
 		this.cellPhone = cellPhone;
 	}
 
-	public Long getHomePhone() {
+	public String getHomePhone() {
 		return homePhone;
 	}
 
-	public void setHomePhone(Long homePhone) {
+	public void setHomePhone(String homePhone) {
 		this.homePhone = homePhone;
 	}
 
-	public Long getOfficePhone() {
+	public String getOfficePhone() {
 		return officePhone;
 	}
 
-	public void setOfficePhone(Long officePhone) {
+	public void setOfficePhone(String officePhone) {
 		this.officePhone = officePhone;
 	}
 
@@ -134,11 +134,11 @@ public class Person {
 		this.emailAddress = emailAddress;
 	}
 
-	public Organization getOrganization() {
+	public Organisation getOrganization() {
 		return organization;
 	}
 
-	public void setOrganization(Organization organization) {
+	public void setOrganization(Organisation organization) {
 		this.organization = organization;
 	}
 

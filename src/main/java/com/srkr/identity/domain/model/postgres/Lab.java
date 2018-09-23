@@ -1,6 +1,5 @@
 package com.srkr.identity.domain.model.postgres;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 

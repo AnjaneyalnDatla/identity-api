@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="Organization")
-public class Organization {
+@Table (name="Organisation")
+public class Organisation {
 	
 	
 	@Id
