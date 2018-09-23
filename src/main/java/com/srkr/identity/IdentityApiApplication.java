@@ -1,4 +1,4 @@
-package com.srkr.identity.identityapi;
+package com.srkr.identity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

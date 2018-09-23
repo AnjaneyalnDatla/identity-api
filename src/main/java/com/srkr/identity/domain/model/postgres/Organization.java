@@ -1,27 +1,28 @@
-package com.srkr.domain;
+package com.srkr.identity.domain.model.postgres;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="Address")
-public class Address {
-
+@Table (name="Organization")
+public class Organization {
+	
+	
 	@Id
 	@GeneratedValue
 	@Column(name="id")
 	private Long id;
+	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="description")
+	private String description;
 	
 	@Column(name="streetaddress")
 	private String streetAddress;
@@ -41,14 +42,8 @@ public class Address {
 	@Column(name="landmark")
 	private String landmark;
 	
-	@Column(name="dateUpdated")
+	@Column(name="dateupdated")
 	private Date dateUpdated;
-	
-	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="USERADDRESS",
-				joinColumns= {@JoinColumn(name="id")},
-				inverseJoinColumns={@JoinColumn(name="id")})
-	private Set<Person> persons = new HashSet<Person>();
 
 	public Long getId() {
 		return id;
@@ -56,6 +51,22 @@ public class Address {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getStreetAddress() {
@@ -113,13 +124,6 @@ public class Address {
 	public void setDateUpdated(Date dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
-
-	public Set<Person> getPersons() {
-		return persons;
-	}
-
-	public void setPersons(Set<Person> persons) {
-		this.persons = persons;
-	}	
+	
 	
 }

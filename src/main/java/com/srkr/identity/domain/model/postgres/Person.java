@@ -1,4 +1,4 @@
-package com.srkr.domain;
+package com.srkr.identity.domain.model.postgres;
 
 import java.util.Date;
 import java.util.HashSet;

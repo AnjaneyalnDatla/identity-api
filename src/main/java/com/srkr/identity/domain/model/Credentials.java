@@ -1,49 +1,27 @@
-package com.srkr.domain;
+package com.srkr.identity.domain.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-@Entity
-@Table (name="Credentials")
-public class Credentials {
+import com.srkr.identity.domain.model.postgres.Person;
 
-	@Id
-	@GeneratedValue
-	@Column(name="id")
-	private Long id;
+public class Credentials implements Serializable{
 	
-	@ManyToOne
-	@JoinColumn(name="id")	
+	private static final long serialVersionUID = 1L;
+
 	private Person person;
 	
-	@Column(name="username")
 	private String userName;
 	
-	@Column(name="password")
 	private String password;
 	
-	@Column(name="isactive")
 	private Date isActive;
 	
-	@Column(name="lastreset")
 	private Date lastReset;
 	
-	@Column(name="dateupdated")
 	private Date dateUpdated;
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public Person getPerson() {
 		return person;
