@@ -1,74 +1,34 @@
 package com.srkr.identity.domain.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import com.srkr.identity.domain.model.postgres.Person;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Credentials implements Serializable{
+public class Credentials extends AssertionConcern implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-
-	private Person person;
 	
 	private String userName;
 	
 	private String password;
-	
-	private Date isActive;
-	
-	private Date lastReset;
-	
-	private Date dateUpdated;
 
-
-
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
+	@JsonCreator
+	public Credentials(@JsonProperty("userName") String username, @JsonProperty("password") String password) {
+		super();
+		this.userName = username;
 		this.password = password;
 	}
 	
-	public Date getIsActive() {
-		return isActive;
+	@JsonGetter
+	public String userName() {
+		return this.userName;
 	}
-
-	public void setIsActive(Date isActive) {
-		this.isActive = isActive;
-	}
-
-	public Date getLastReset() {
-		return lastReset;
-	}
-
-	public void setLastReset(Date lastReset) {
-		this.lastReset = lastReset;
-	}
-
-	public Date getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(Date dateUpdated) {
-		this.dateUpdated = dateUpdated;
+	
+	@JsonGetter
+	public String password() {
+		return this.password;
 	}
 	
 	

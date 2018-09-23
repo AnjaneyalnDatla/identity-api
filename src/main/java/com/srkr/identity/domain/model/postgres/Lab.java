@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.srkr.identity.domain.model.postgres.Department;
+
 @Entity
 @Table (name="Lab")
 public class Lab {

@@ -1,5 +1,6 @@
 package com.srkr.identity.domain.model;
 
+import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,6 +39,12 @@ public class AssertionConcern {
 	protected void assertArgumentLength(String aString, int aMaximum, String aMessage) {
 		int length = aString.trim().length();
 		if (length > aMaximum) {
+			throw new IllegalArgumentException(aMessage);
+		}
+	}
+	
+	protected void assertCollectionNotEmpty(@SuppressWarnings("rawtypes") Collection aCollection, String aMessage) {
+		if (aCollection.isEmpty()) {
 			throw new IllegalArgumentException(aMessage);
 		}
 	}
