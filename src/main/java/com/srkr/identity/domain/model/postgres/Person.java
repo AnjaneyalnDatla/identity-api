@@ -46,24 +46,24 @@ public class Person {
 	private String emailAddress;
 	
 	@ManyToOne
-	@JoinColumn(name="id")	
+	@JoinColumn(referencedColumnName="id")	
 	private Organization organization;
 	
 	@ManyToOne
-	@JoinColumn(name="id")	
+	@JoinColumn(referencedColumnName="id")	
 	private Department departmentID;
 	
-	@Column(name="id")
+	@Column(name="designation")
 	private String designation;
 	
 	@ManyToOne
-	@JoinColumn(name="id")	
+	@JoinColumn(referencedColumnName="id")	
 	private PersonRole personRole;
 	
 	// personRole many to one or not ? 
 	
 	@ManyToOne(cascade= {CascadeType.ALL})
-	@JoinColumn(name="supervisor")
+	@JoinColumn(referencedColumnName="id")
 	private Person supervisor;
 	//Do we want to rename this column to supervisor_id instead ?
 	
@@ -72,8 +72,8 @@ public class Person {
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name="USERADDRESS",
-				joinColumns= {@JoinColumn(name="id")},
-				inverseJoinColumns={@JoinColumn(name="id")})
+				joinColumns= {@JoinColumn(referencedColumnName="id")},
+				inverseJoinColumns={@JoinColumn(referencedColumnName="id")})
 	private Set<Address> addresses = new HashSet<Address>();
 
 	public Long getId() {

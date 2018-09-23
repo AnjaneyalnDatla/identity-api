@@ -9,12 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.srkr.identity.domain.model.postgres.Department;
 
 @Entity
 @Table (name="Lab")
@@ -35,9 +31,6 @@ public class Lab {
 	private Date dateUpdated;
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="DEPARTMENTLAB",
-				joinColumns= {@JoinColumn(name="id")},
-				inverseJoinColumns={@JoinColumn(name="id")})
 	private Set<Department> departments = new HashSet<Department>();
 
 	public Long getId() {

@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.srkr.identity.domain.model.Lab;
 
 @Entity
 @Table (name="Department")
@@ -36,8 +35,8 @@ public class Department {
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name="DEPARTMENTLAB",
-				joinColumns= {@JoinColumn(name="id")},
-				inverseJoinColumns={@JoinColumn(name="id")})
+				joinColumns= {@JoinColumn(referencedColumnName="id")},
+				inverseJoinColumns={@JoinColumn(referencedColumnName="id")})
 	private Set<Lab> labs = new HashSet<Lab>();
 
 	public Long getId() {

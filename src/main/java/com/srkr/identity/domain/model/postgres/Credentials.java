@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 @Entity
 @Table (name="Credentials")
 public class Credentials {
@@ -19,7 +20,7 @@ public class Credentials {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="id")	
+	@JoinColumn(referencedColumnName="id")	
 	private Person person;
 	
 	@Column(name="username")

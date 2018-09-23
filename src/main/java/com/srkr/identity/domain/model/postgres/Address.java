@@ -46,8 +46,8 @@ public class Address {
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name="USERADDRESS",
-				joinColumns= {@JoinColumn(name="id")},
-				inverseJoinColumns={@JoinColumn(name="id")})
+				joinColumns= {@JoinColumn(referencedColumnName="id")},
+				inverseJoinColumns={@JoinColumn(referencedColumnName="id")})
 	private Set<Person> persons = new HashSet<Person>();
 
 	public Long getId() {
