@@ -26,7 +26,7 @@ public class ZipCode extends AssertionConcern implements Serializable{
 	}
 
 	private void checkDigits(String digits) {
-		this.assertRegexTrue(digits, "[0-9]+", "Zip code should only contain numbers");
+		this.assertRegexTrue(digits, "^[0-9]*$", "Zip code should only contain numbers");
 		this.assertArgumentLength(digits, 5, 5, "Zip code should only contain 5 digits");
 	}
 
