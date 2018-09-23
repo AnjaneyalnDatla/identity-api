@@ -6,25 +6,24 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Lab extends AssertionConcern implements Serializable{
-	
-	private static final long serialVersionUID = 5961668550427704053L;
+public class PersonRole extends AssertionConcern implements Serializable {
+
+	private static final long serialVersionUID = 968111752201932129L;
 	private String name;
 	private String description;
-	
+
 	@JsonCreator
-	public Lab(@JsonProperty("name")String name,@JsonProperty("description")String description) {
-		super();
+	public PersonRole(@JsonProperty("name") String name, @JsonProperty("description") String description) {
 		this.name = name;
 		this.description = description;
 	}
-	
-	@JsonGetter("name")
+
+	@JsonGetter
 	public String name() {
 		return this.name;
 	}
 
-	@JsonGetter("description")
+	@JsonGetter
 	public String description() {
 		return this.description;
 	}

@@ -14,16 +14,21 @@ public final class Address extends AssertionConcern implements Serializable {
 	private ZipCode zipCode;
 	private String city;
 	private State state;
-	
+	private String landMark;
+	private Country country;
+
 	@JsonCreator
-	public Address(@JsonProperty("streetAddress") String streetAddress, @JsonProperty("city") String city, 
-			@JsonProperty("state") State state, @JsonProperty("zipCode") ZipCode zipCode) {
+	public Address(@JsonProperty("streetAddress") String streetAddress, @JsonProperty("city") String city,
+			@JsonProperty("state") State state, @JsonProperty("zipCode") ZipCode zipCode,
+			@JsonProperty("landmark") String landMark, @JsonProperty("Country") Country country) {
 		super();
 		this.checkstreetAddress(streetAddress);
 		this.streetAddress = streetAddress;
 		this.zipCode = zipCode;
 		this.city = city;
 		this.state = state;
+		this.landMark = landMark;
+		this.country = country;
 	}
 
 	@JsonGetter("streetAddress")
@@ -45,6 +50,16 @@ public final class Address extends AssertionConcern implements Serializable {
 	public ZipCode zipCode() {
 		return zipCode;
 	}
+	
+	@JsonGetter("landMark")
+	public String landMark() {
+		return landMark;
+	}
+	
+	@JsonGetter("Country")
+	public Country country() {
+		return country;
+	}
 
 	private void checkstreetAddress(String astreetAddress) {
 		this.assertArgumentNotEmpty(astreetAddress, "a street name is required.");
@@ -54,11 +69,13 @@ public final class Address extends AssertionConcern implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Address [streetAddress=" + streetAddress+", city=" + city + ", state=" + state + ", zipCode=" + zipCode.digits() + "]";
+		return "Address [streetAddress=" + streetAddress + ", city=" + city + ", state=" + state + ", zipCode="
+				+ zipCode.digits() + ", landMark="+landMark+", country="+country.name()+"]";
 	}
 
 	public static Address emptyDefault() {
-		return new Address("default", "default", State.valueOfAbbreviation("AP"), ZipCode.emptyDefault());
+		return new Address("default", "default", State.valueOfAbbreviation("AP"), ZipCode.emptyDefault(), "default",
+				Country.valueOfAbbreviation("IN"));
 	}
 
 }
