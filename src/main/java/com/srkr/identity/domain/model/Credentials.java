@@ -21,12 +21,12 @@ public class Credentials extends AssertionConcern implements Serializable{
 		this.password = password;
 	}
 	
-	@JsonGetter
+	@JsonGetter("userName")
 	public String userName() {
 		return this.userName;
 	}
 	
-	@JsonGetter
+	@JsonGetter("password")
 	public String password() {
 		return this.password;
 	}

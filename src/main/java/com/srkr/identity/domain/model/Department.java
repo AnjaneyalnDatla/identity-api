@@ -38,17 +38,17 @@ public class Department extends AssertionConcern implements Serializable {
 		this.assertCollectionNotEmpty(labs, "Labs cannot be empty");
 	}
 	
-	@JsonGetter
+	@JsonGetter("name")
 	public String name() {
 		return this.name;
 	}
 	
-	@JsonGetter
+	@JsonGetter("description")
 	public String description() {
 		return this.description;
 	}
 	
-	@JsonGetter
+	@JsonGetter("labs")
 	public Set<Lab> labs() {
 		return this.labs;
 	}
