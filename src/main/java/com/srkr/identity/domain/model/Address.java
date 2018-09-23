@@ -60,25 +60,5 @@ public final class Address extends AssertionConcern implements Serializable {
 	public static Address emptyDefault() {
 		return new Address("default", "default", State.valueOfAbbreviation("AP"), ZipCode.emptyDefault());
 	}
-	
-	@Override
-	public boolean equals(Object object) {
-		if (this == object) {
-			return true;
-		}
 
-		if (object == null || getClass() != object.getClass()) {
-			return false;
-		}
-		return this.streetAddress().equals(((Address)object).streetAddress()) && this.city().equals(((Address)object).city()) 
-				&& this.state().equals(((Address)object).state()) && this.zipCode().digits().equals(((Address)object).zipCode().digits());
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((zipCode == null) ? 0 : zipCode.digits().hashCode());
-		return result;
-	}
 }
