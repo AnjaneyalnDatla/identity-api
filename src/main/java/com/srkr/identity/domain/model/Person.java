@@ -29,8 +29,23 @@ public class Person extends AssertionConcern implements Serializable {
 	private Set<Address> addresses;
 
 	@JsonCreator
-	public Person() {
-
+	public Person(@JsonProperty("firstName") String firstName,@JsonProperty("lastName") String lastName,
+			@JsonProperty("cellPhone") Long cellPhone,@JsonProperty("emailAddress") String emailAddress,
+			@JsonProperty("Organisation") Organization organization,@JsonProperty("Department") Department department,
+			@JsonProperty("designation") String designation) {
+		super();
+		checkName(firstName, "First Name");
+		this.firstName = firstName;
+		checkName(firstName, "Last Name");
+		this.lastName = lastName;
+		checkPhone(cellPhone, "Cell");
+		this.cellPhone = cellPhone;
+		checkEmailAddress(emailAddress);
+		this.emailAddress = emailAddress;
+		this.organization = organization;
+		this.department = department;
+		this.designation = designation;
+		
 	}
 
 	@JsonCreator
@@ -139,7 +154,7 @@ public class Person extends AssertionConcern implements Serializable {
 		if (aNumber != null) {
 			String digits = aNumber + "";
 			this.assertRegexTrue(digits, "[0-9]*$", phoneType + " phone should only contain numbers");
-			this.assertArgumentLength(digits, 5, 5, phoneType + " phone should only contain 10 digits");
+			this.assertArgumentLength(digits, 10, 10, phoneType + " phone should only contain 10 digits");
 		}
 	}
 
