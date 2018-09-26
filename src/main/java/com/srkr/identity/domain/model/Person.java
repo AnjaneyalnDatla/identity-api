@@ -17,9 +17,9 @@ public class Person extends AssertionConcern implements Serializable {
 	private String firstName;
 	private String middleName;
 	private String lastName;
-	private Long cellPhone;
-	private Long homePhone;
-	private Long officePhone;
+	private String cellPhone;
+	private String homePhone;
+	private String officePhone;
 	private String emailAddress;
 	private Organization organization;
 	private Department department;
@@ -35,8 +35,8 @@ public class Person extends AssertionConcern implements Serializable {
 
 	@JsonCreator
 	public Person(@JsonProperty("firstName") String firstName, @JsonProperty("middleName") String middleName,
-			@JsonProperty("lastName") String lastName, @JsonProperty("cellPhone") Long cellPhone,
-			@JsonProperty("homePhone") Long homePhone, @JsonProperty("officePhone") Long officePhone,
+			@JsonProperty("lastName") String lastName, @JsonProperty("cellPhone") String cellPhone,
+			@JsonProperty("homePhone") String homePhone, @JsonProperty("officePhone") String officePhone,
 			@JsonProperty("emailAddress") String emailAddress, @JsonProperty("Organisation") Organization organization,
 			@JsonProperty("Department") Department department, @JsonProperty("designation") String designation,
 			@JsonProperty("personRole") PersonRole personRole, @JsonProperty("superVisior") Person supervisior,
@@ -80,17 +80,17 @@ public class Person extends AssertionConcern implements Serializable {
 	}
 
 	@JsonGetter("cellPhone")
-	public Long cellPhone() {
+	public String cellPhone() {
 		return this.cellPhone;
 	}
 
 	@JsonGetter("homePhone")
-	public Long homePhone() {
+	public String homePhone() {
 		return this.homePhone;
 	}
 
 	@JsonGetter("officePhone")
-	public Long OfficePhone() {
+	public String OfficePhone() {
 		return this.officePhone;
 	}
 
@@ -135,9 +135,8 @@ public class Person extends AssertionConcern implements Serializable {
 				"Name must be" + MAX_NAME_LENGTH + " characters or less.");
 	}
 
-	private void checkPhone(Long aNumber, String phoneType) {
-		if (aNumber != null) {
-			String digits = aNumber + "";
+	private void checkPhone(String digits, String phoneType) {
+		if (digits != null) {
 			this.assertRegexTrue(digits, "[0-9]*$", phoneType + " phone should only contain numbers");
 			this.assertArgumentLength(digits, 5, 5, phoneType + " phone should only contain 10 digits");
 		}

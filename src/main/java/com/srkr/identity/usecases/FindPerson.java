@@ -1,5 +1,8 @@
 package com.srkr.identity.usecases;
 
-public class FindPerson {
+import org.springframework.stereotype.Service;
 
+@Service
+public class FindPerson {
+	
 }
