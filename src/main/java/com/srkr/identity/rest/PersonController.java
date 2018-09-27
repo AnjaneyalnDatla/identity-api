@@ -29,7 +29,7 @@ public class PersonController {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response createResponse(@RequestBody String jsonBody) {
+	public Response createPerson(@RequestBody String jsonBody) {
 		log.info("Person json : " + jsonBody);
 		try {
 			createPerson.createPerson(new ObjectMapper().readValue(jsonBody, Person.class));
