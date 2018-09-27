@@ -30,7 +30,7 @@ public class Person extends AssertionConcern implements Serializable {
 
 	@JsonCreator
 	public Person(@JsonProperty("firstName") String firstName,@JsonProperty("lastName") String lastName,
-			@JsonProperty("cellPhone") Long cellPhone,@JsonProperty("emailAddress") String emailAddress,
+			@JsonProperty("cellPhone") String cellPhone,@JsonProperty("emailAddress") String emailAddress,
 			@JsonProperty("Organisation") Organization organization,@JsonProperty("Department") Department department,
 			@JsonProperty("designation") String designation) {
 		super();
