@@ -25,10 +25,10 @@ public class PersonTest {
 		Address address2 = Address.emptyDefault();
 		addresses.add(address);
 		addresses.add(address2);
-		Person supervisor = new Person(new String("Anjaneya"), new String("Datla"), new Long("9769098780"), 
+		Person supervisor = new Person(new String("Anjaneya"), new String("Datla"), new String("9769098780"), 
 				new String("anjaneya@gmail.com"), organization, department, new String ("designation"));
 		Person person = new Person(new String("Sneha"),new String(""),new String("Gokaraju"),
-				new Long("9876500110"), new Long("9876500110"),new Long("9876500110"),
+				new String("9876500110"), new String("9876500110"),new String("9876500110"),
 				new String("sneha92@gmail.com"),organization,department,new String("designation"),
 				personrole,supervisor,addresses);
 		assertNotNull(personrole);
