@@ -1,6 +1,8 @@
 package com.srkr.identity.domain.model.postgres;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -96,5 +98,13 @@ public class PersonMapper {
 				toDomainObject(pgPerson.getSupervisor()), addresses);
 
 		return person;
+	}
+
+	public List<com.srkr.identity.domain.model.Person> toListOfDomainObjects(List<Person> persons) {
+		List<com.srkr.identity.domain.model.Person> persons2 = new ArrayList<>();
+		persons.forEach(p -> {
+			persons2.add(toDomainObject(p));
+		});
+		return persons2;
 	}
 }

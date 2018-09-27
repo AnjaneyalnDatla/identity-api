@@ -34,7 +34,7 @@ public class PersonController {
 		try {
 			createPerson.createPerson(new ObjectMapper().readValue(jsonBody, Person.class));
 		} catch (IOException e) {
-			Response response = Response.status(Response.Status.FORBIDDEN.getStatusCode()).build();
+			return Response.status(Response.Status.FORBIDDEN.getStatusCode()).build();
 		}
 		Response response = Response.status(Response.Status.CREATED.getStatusCode()).build();
 		log.info("Response:" + response);
