@@ -1,5 +1,7 @@
 package com.srkr.identity.domain.model.postgres;
 
+import java.util.List;
+
 import org.springframework.data.repository.Repository;
 
 public interface PostgresPersonRepository extends Repository<Person, Long>{
@@ -9,8 +11,8 @@ public interface PostgresPersonRepository extends Repository<Person, Long>{
 	
 	Person delete(Person person);
 	
-	Person findByFirstName(String firstName);
+	List<Person> findByFirstName(String firstName);
 	
-	Person findByLastName(String lastName);
+	List<Person> findByLastName(String lastName);
 
 }

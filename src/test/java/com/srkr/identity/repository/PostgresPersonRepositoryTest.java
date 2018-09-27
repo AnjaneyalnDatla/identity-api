@@ -1,8 +1,10 @@
 package com.srkr.identity.repository;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
@@ -87,6 +89,23 @@ public class PostgresPersonRepositoryTest {
 		assertNotNull(person.getId());
 		
 	}
+	
+	@Test
+	public void findByFirstNameTest() {
+		List<Person> persons = personRepository.findByFirstName(this.person.getFirstName());
+		assertNotNull(persons);
+		assertEquals("FirstNameTest", persons.get(0).getFirstName());
+		
+	}
+	
+	@Test
+	public void findByLastNameTest() {
+		List<Person> persons = personRepository.findByLastName(this.person.getLastName());
+		assertNotNull(persons);
+		assertNotNull("LastNameTest",persons.get(0).getLastName());
+		
+	}
+	
 
 
 }
