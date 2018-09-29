@@ -2,6 +2,8 @@ package com.srkr.identity.usecases;
 
 import java.util.List;
 
+import javax.naming.NameNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +37,12 @@ public class FindPerson {
 		return personMapper.toListOfDomainObjects(personRepository.findByLastName(lastName));
 	}
 
-	public Credentials findPersonByCredentials(Credentials credentials) {
-		return credentialsMapper.toDomainObject(
+	public Credentials findPersonByCredentials(Credentials credentials) throws NameNotFoundException {
+		Credentials creds = credentialsMapper.toDomainObject(
 				personAuthRepository.findByUserNameAndPassword(credentials.userName(), credentials.password()));
+		if(creds == null) {
+			throw new NameNotFoundException();
+		}
+		return creds;
 	}
 }
