@@ -42,9 +42,9 @@ public class Address {
 	private String landmark;
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="USERADDRESS",
+	@JoinTable(name="PERSON_ADDRESS",
 				joinColumns= {@JoinColumn(referencedColumnName="id")},
-				inverseJoinColumns={@JoinColumn(referencedColumnName="id")})
+				inverseJoinColumns={@JoinColumn(name="person_id",referencedColumnName="id")})
 	private Set<Person> persons = new HashSet<Person>();
 
 	public Long getId() {

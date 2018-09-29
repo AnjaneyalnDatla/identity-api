@@ -9,7 +9,7 @@ public interface PostgresPersonRepository extends Repository<Person, Long>{
 
 	Person save(Person person);
 	
-	Person delete(Person person);
+	void delete(Person person);
 	
 	List<Person> findByFirstName(String firstName);
 	

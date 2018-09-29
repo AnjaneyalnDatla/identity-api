@@ -27,8 +27,8 @@ public class Lab {
 	@Column(name="description")
 	private String description;
 
-	@ManyToMany(cascade = {CascadeType.ALL})
-	private Set<Department> departments = new HashSet<Department>();
+	//@ManyToMany(cascade = {CascadeType.ALL})
+	//private Set<Department> departments = new HashSet<Department>();
 
 	public Long getId() {
 		return id;
@@ -54,12 +54,12 @@ public class Lab {
 		this.description = description;
 	}
 
-	public Set<Department> getDepartments() {
-		return departments;
-	}
+	//public Set<Department> getDepartments() {
+	//	return departments;
+	//}
 
-	public void setDepartments(Set<Department> departments) {
-		this.departments = departments;
-	}
+	//public void setDepartments(Set<Department> departments) {
+	//	this.departments = departments;
+	//}
 
 }
