@@ -1,6 +1,7 @@
 package com.srkr.identity.domain.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.HashSet;
@@ -36,6 +37,9 @@ public class PersonTest {
 		assertEquals("Gokaraju", person.lastName());
 		assertNotNull(address2);
 		assertEquals("name", personrole.name());
+		assertNotEquals("sneha@gmail.com", person.emailAddress());
+		assertEquals("9769098780", supervisor.cellPhone());
+		assertEquals("designation", person.designation());
 		
 		
 		
