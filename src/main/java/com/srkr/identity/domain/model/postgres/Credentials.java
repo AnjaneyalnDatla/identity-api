@@ -2,6 +2,7 @@ package com.srkr.identity.domain.model.postgres;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class Credentials {
 	@Column(name="id")
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(referencedColumnName="id")	
 	private Person person;
 	

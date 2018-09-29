@@ -14,8 +14,11 @@ public class Credentials extends AssertionConcern implements Serializable {
 
 	private String password;
 
+	private Person person;
+
 	@JsonCreator
-	public Credentials(@JsonProperty("userName") String username, @JsonProperty("password") String password) {
+	public Credentials(@JsonProperty("userName") String username, @JsonProperty("password") String password,
+			@JsonProperty("person") Person person) {
 		super();
 		checkUserName(username);
 		this.userName = username;
@@ -23,26 +26,30 @@ public class Credentials extends AssertionConcern implements Serializable {
 		this.password = password;
 	}
 
-
-	@JsonGetter
+	@JsonGetter("userName")
 	public String userName() {
 		return this.userName;
 	}
 
-	
 	@JsonGetter("password")
 	public String password() {
 		return this.password;
+	}
+
+	@JsonGetter("person")
+	public Person person() {
+		return this.person;
 	}
 
 	private void checkPassword(String password) {
 		this.assertRegexTrue(password, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",
 				"Contains atleast one digit, Contains at least one lower alpha char and one upper alpha char,Contains at least one char within a set of special chars,Does not contain space,length at least 8 chars");
 	}
-	
+
 	private void checkUserName(String userName) {
-		this.assertRegexTrue(userName, "^[a-zA-Z0-9._-]{3,}$", "Length >=3,Valid characters: a-z, A-Z, 0-9, points, dashes and underscores");
-		
+		this.assertRegexTrue(userName, "^[a-zA-Z0-9._-]{3,}$",
+				"Length >=3,Valid characters: a-z, A-Z, 0-9, points, dashes and underscores");
+
 	}
 
 }
