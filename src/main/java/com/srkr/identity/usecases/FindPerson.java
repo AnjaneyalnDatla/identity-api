@@ -30,10 +30,12 @@ public class FindPerson {
 	@Autowired
 	private CredentialsMapper credentialsMapper;
 
+	@Transactional
 	public List<Person> findAllPersonByFirstName(String firstName) {
 		return personMapper.toListOfDomainObjects(personRepository.findByFirstName(firstName));
 	}
-
+	
+	@Transactional
 	public List<Person> findAllPersonByLastName(String lastName) {
 		return personMapper.toListOfDomainObjects(personRepository.findByLastName(lastName));
 	}

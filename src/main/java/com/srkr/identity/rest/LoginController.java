@@ -33,6 +33,7 @@ public class LoginController {
 	@Consumes({ MediaType.APPLICATION_JSON })
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response validateLogin(@RequestBody String jsonBody) {
+		log.info("json body:"+ jsonBody);
 		Credentials credentials;
 		try {
 			credentials = findPerson.findPersonByCredentials(new ObjectMapper().readValue(jsonBody, Credentials.class));

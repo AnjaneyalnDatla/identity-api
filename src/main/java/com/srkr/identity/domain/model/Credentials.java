@@ -3,9 +3,6 @@ package com.srkr.identity.domain.model;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Credentials extends AssertionConcern implements Serializable {
 	private static final int MAX_EMAIL_LENGTH = 100;
 	private static final long serialVersionUID = 1L;
@@ -14,8 +11,7 @@ public class Credentials extends AssertionConcern implements Serializable {
 	private String password;
 	private Person person;
 
-	@JsonCreator
-	public Credentials(@JsonProperty("userName") String username, @JsonProperty("password") String password,@JsonProperty("person")Person person) {
+	public Credentials(String username, String password, Person person) {
 		super();
 		checkUserName(username);
 		this.userName = username;

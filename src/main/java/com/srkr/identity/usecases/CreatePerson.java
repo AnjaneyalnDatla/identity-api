@@ -1,5 +1,7 @@
 package com.srkr.identity.usecases;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class CreatePerson {
 	@Autowired
 	private PersonMapper personMapper;
 
+	@Transactional
 	public Person createPerson(Person person) {
 		Person personSave = personMapper.toDomainObject(personRepository.save(personMapper.toPostgresObject(person)));
 		return personSave;
