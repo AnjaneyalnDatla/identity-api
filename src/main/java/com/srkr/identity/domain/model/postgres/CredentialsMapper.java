@@ -11,15 +11,15 @@ public class CredentialsMapper {
 
 	public Credentials toPostgresObject(com.srkr.identity.domain.model.Credentials credentials) {
 		Credentials creds = new Credentials();
-		creds.setUserName(credentials.userName());
-		creds.setPassword(credentials.password());
-		creds.setPerson(personMapper.toPostgresObject(credentials.person()));
+		creds.setUserName(credentials.getUserName());
+		creds.setPassword(credentials.getPassword());
+		creds.setPerson(personMapper.toPostgresObject(credentials.getPerson()));
 		return creds;
 	}
 
 	public com.srkr.identity.domain.model.Credentials toDomainObject(Credentials credentials) {
 		return new com.srkr.identity.domain.model.Credentials(credentials.getUserName(), credentials.getPassword(),
-				personMapper.toDomainObject(credentials.getPerson()));
+				(null != credentials.getPerson() ? personMapper.toDomainObject(credentials.getPerson()) : null));
 	}
 
 }

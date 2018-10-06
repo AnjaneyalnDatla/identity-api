@@ -29,7 +29,9 @@ dependencies {
 	'org.springframework.boot:spring-boot-starter-data-rest',
 	'org.springframework.boot:spring-boot-starter-jersey',
 	'org.springframework.cloud:spring-cloud-starter-config:2.0.1.RELEASE',
-	'org.json:json:20180130')
+	'org.json:json:20180130',
+	'org.springframework.boot:spring-boot-devtools',
+	'org.springframework.boot:spring-boot-starter-actuator')
 	
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

@@ -60,7 +60,7 @@ public class PersonMapper {
 
 	public com.srkr.identity.domain.model.Person toDomainObject(Person pgPerson) {
 
-		if (pgPerson != null) {
+		if (pgPerson == null) {
 			return null;
 		}
 

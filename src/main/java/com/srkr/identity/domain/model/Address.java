@@ -2,10 +2,6 @@ package com.srkr.identity.domain.model;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public final class Address extends AssertionConcern implements Serializable {
 	public static final Integer MAX_STREET_ADDRESS_LENGTH = 250;
 	private static final long serialVersionUID = 149011875407286550L;
@@ -17,10 +13,9 @@ public final class Address extends AssertionConcern implements Serializable {
 	private String landMark;
 	private Country country;
 
-	@JsonCreator
-	public Address(@JsonProperty("streetAddress") String streetAddress, @JsonProperty("city") String city,
-			@JsonProperty("state") State state, @JsonProperty("zipCode") ZipCode zipCode,
-			@JsonProperty("landmark") String landMark, @JsonProperty("Country") Country country) {
+	public Address(String streetAddress, String city,
+			State state, ZipCode zipCode,
+			String landMark,Country country) {
 		super();
 		this.checkstreetAddress(streetAddress);
 		this.streetAddress = streetAddress;
@@ -31,32 +26,26 @@ public final class Address extends AssertionConcern implements Serializable {
 		this.country = country;
 	}
 
-	@JsonGetter("streetAddress")
 	public String streetAddress() {
 		return streetAddress;
 	}
 
-	@JsonGetter("city")
 	public String city() {
 		return city;
 	}
 
-	@JsonGetter("state")
 	public State state() {
 		return state;
 	}
 
-	@JsonGetter("zipCode")
 	public ZipCode zipCode() {
 		return zipCode;
 	}
 	
-	@JsonGetter("landMark")
 	public String landMark() {
 		return landMark;
 	}
 	
-	@JsonGetter("Country")
 	public Country country() {
 		return country;
 	}

@@ -3,6 +3,7 @@ package com.srkr.identity.usecases;
 import java.util.List;
 
 import javax.naming.NameNotFoundException;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,12 +38,15 @@ public class FindPerson {
 		return personMapper.toListOfDomainObjects(personRepository.findByLastName(lastName));
 	}
 
+	@Transactional
 	public Credentials findPersonByCredentials(Credentials credentials) throws NameNotFoundException {
-		Credentials creds = credentialsMapper.toDomainObject(
-				personAuthRepository.findByUserNameAndPassword(credentials.userName(), credentials.password()));
-		if(creds == null) {
+		Object object = personAuthRepository.findByUserNameAndPassword(credentials.getUserName(),
+				credentials.getPassword());
+		if (object == null) {
 			throw new NameNotFoundException();
 		}
+		Credentials creds = credentialsMapper
+				.toDomainObject((com.srkr.identity.domain.model.postgres.Credentials) object);
 		return creds;
 	}
 }

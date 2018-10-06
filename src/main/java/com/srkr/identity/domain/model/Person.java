@@ -4,10 +4,6 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Person extends AssertionConcern implements Serializable {
 
 	private static final long serialVersionUID = 7397365805727122078L;
@@ -28,11 +24,8 @@ public class Person extends AssertionConcern implements Serializable {
 	private Person supervisor;
 	private Set<Address> addresses;
 
-	@JsonCreator
-	public Person(@JsonProperty("firstName") String firstName,@JsonProperty("lastName") String lastName,
-			@JsonProperty("cellPhone") String cellPhone,@JsonProperty("emailAddress") String emailAddress,
-			@JsonProperty("Organisation") Organization organization,@JsonProperty("Department") Department department,
-			@JsonProperty("designation") String designation) {
+	public Person(String firstName, String lastName, String cellPhone, String emailAddress, Organization organization,
+			Department department, String designation) {
 		super();
 		checkName(firstName, "First Name");
 		this.firstName = firstName;
@@ -45,17 +38,12 @@ public class Person extends AssertionConcern implements Serializable {
 		this.organization = organization;
 		this.department = department;
 		this.designation = designation;
-		
+
 	}
 
-	@JsonCreator
-	public Person(@JsonProperty("firstName") String firstName, @JsonProperty("middleName") String middleName,
-			@JsonProperty("lastName") String lastName, @JsonProperty("cellPhone") String cellPhone,
-			@JsonProperty("homePhone") String homePhone, @JsonProperty("officePhone") String officePhone,
-			@JsonProperty("emailAddress") String emailAddress, @JsonProperty("Organisation") Organization organization,
-			@JsonProperty("Department") Department department, @JsonProperty("designation") String designation,
-			@JsonProperty("personRole") PersonRole personRole, @JsonProperty("superVisior") Person supervisior,
-			@JsonProperty("address") Set<Address> addresses) {
+	public Person(String firstName, String middleName, String lastName, String cellPhone, String homePhone,
+			String officePhone, String emailAddress, Organization organization, Department department,
+			String designation, PersonRole personRole, Person supervisior, Set<Address> addresses) {
 		super();
 		checkName(firstName, "First Name");
 		this.firstName = firstName;
@@ -79,67 +67,54 @@ public class Person extends AssertionConcern implements Serializable {
 		this.addresses = addresses;
 	}
 
-	@JsonGetter("firstName")
 	public String firstName() {
 		return this.firstName;
 	}
 
-	@JsonGetter("lastName")
 	public String lastName() {
 		return this.lastName;
 	}
 
-	@JsonGetter("middleName")
 	public String middleName() {
 		return this.middleName;
 	}
 
-	@JsonGetter("cellPhone")
 	public String cellPhone() {
 		return this.cellPhone;
 	}
 
-	@JsonGetter("homePhone")
 	public String homePhone() {
 		return this.homePhone;
 	}
 
-	@JsonGetter("officePhone")
 	public String OfficePhone() {
 		return this.officePhone;
 	}
 
-	@JsonGetter("emailAddress")
 	public String emailAddress() {
 		return this.emailAddress;
 	}
 
-	@JsonGetter("organisation")
 	public Organization organization() {
 		return this.organization;
 	}
 
-	@JsonGetter("department")
 	public Department department() {
 		return this.department;
 	}
 
-	@JsonGetter("designation")
 	public String designation() {
 		return this.designation;
 	}
 
-	@JsonGetter("personRole")
 	public PersonRole personRole() {
 		return this.personRole;
 	}
 
-	@JsonGetter("supervisior")
 	public Person superVisior() {
 		return this.supervisor;
 	}
 
-	@JsonGetter("addresses")
 	public Set<Address> addresses() {
 		return this.addresses;
 	}

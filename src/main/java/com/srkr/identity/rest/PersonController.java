@@ -1,14 +1,16 @@
 package com.srkr.identity.rest;
 
+import static com.srkr.identity.util.ObjectSerializer.toJsonString;
+
 import java.io.IOException;
 import java.util.List;
 
-import javax.websocket.server.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -22,8 +24,6 @@ import com.srkr.identity.domain.model.Person;
 import com.srkr.identity.usecases.CreatePerson;
 import com.srkr.identity.usecases.FindPerson;
 
-import static com.srkr.identity.util.ObjectSerializer.toJsonString;
-
 @Path("/person")
 public class PersonController {
 
@@ -31,7 +31,7 @@ public class PersonController {
 
 	@Autowired
 	private CreatePerson createPerson;
-	
+
 	@Autowired
 	private FindPerson findPerson;
 
@@ -50,11 +50,11 @@ public class PersonController {
 		return response;
 
 	}
-	
+
 	@GET
-	@Path("/{firstName}")
+	@Path("/name?firstName={firstName}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response findAllPersonsByFirstName(@PathParam("firstName") String firstName) {
+	public Response findAllPersonsByFirstName(@QueryParam("firstName") String firstName) {
 		log.info("first name : " + firstName);
 		List<Person> listOfPersons = null;
 		try {
@@ -66,9 +66,9 @@ public class PersonController {
 	}
 
 	@GET
-	@Path("/{lastName}")
+	@Path("/name?lastName={lastName}")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response findAllPersonsByLastName(@PathParam("firstName") String lastName) {
+	public Response findAllPersonsByLastName(@QueryParam("lastName") String lastName) {
 		log.info("last name : " + lastName);
 		List<Person> listOfPersons = null;
 		try {
@@ -78,6 +78,5 @@ public class PersonController {
 			return Response.status(Response.Status.FORBIDDEN.getStatusCode()).build();
 		}
 	}
-
 
 }
