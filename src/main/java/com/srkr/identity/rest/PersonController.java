@@ -5,6 +5,7 @@ import static com.srkr.identity.util.ObjectSerializer.toJsonString;
 import java.io.IOException;
 import java.util.List;
 
+import javax.naming.NameNotFoundException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -54,28 +55,17 @@ public class PersonController {
 	@GET
 	@Path("/name")
 	@Produces({ MediaType.APPLICATION_JSON })
-	public Response findAllPersonsByFirstName(@QueryParam("firstName") String firstName) {
-		log.info("First Name : " + firstName);
+	public Response findAllPersonsByName(@QueryParam("firstName") String firstName,
+			@QueryParam("lastName") String lastName) {
+		log.info("First Name : " + firstName + ", Last Name : " + lastName);
 		List<Person> listOfPersons = null;
 		try {
-			listOfPersons = findPerson.findAllPersonByFirstName(firstName);
+			listOfPersons = findPerson.findPersonByName(firstName, lastName);
 			return Response.status(Response.Status.OK.getStatusCode()).entity(toJsonString(listOfPersons)).build();
 		} catch (IOException e) {
 			return Response.status(Response.Status.FORBIDDEN.getStatusCode()).build();
-		}
-	}
-
-	@GET
-	@Path("/name")
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Response findAllPersonsByLastName(@QueryParam("lastName") String lastName) {
-		log.info("Last Name : " + lastName);
-		List<Person> listOfPersons = null;
-		try {
-			listOfPersons = findPerson.findAllPersonByLastName(lastName);
-			return Response.status(Response.Status.OK.getStatusCode()).entity(toJsonString(listOfPersons)).build();
-		} catch (IOException e) {
-			return Response.status(Response.Status.FORBIDDEN.getStatusCode()).build();
+		} catch (NameNotFoundException e) {
+			return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
 		}
 	}
 

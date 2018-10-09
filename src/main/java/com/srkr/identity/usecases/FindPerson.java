@@ -31,13 +31,13 @@ public class FindPerson {
 	private CredentialsMapper credentialsMapper;
 
 	@Transactional
-	public List<Person> findAllPersonByFirstName(String firstName) {
-		return personMapper.toListOfDomainObjects(personRepository.findByFirstName(firstName));
-	}
-	
-	@Transactional
-	public List<Person> findAllPersonByLastName(String lastName) {
-		return personMapper.toListOfDomainObjects(personRepository.findByLastName(lastName));
+	public List<Person> findPersonByName(String firstName, String lastName) throws NameNotFoundException {
+		if (null != lastName) {
+			return personMapper.toListOfDomainObjects(personRepository.findByLastName(firstName));
+		} else if (null != firstName) {
+			return personMapper.toListOfDomainObjects(personRepository.findByFirstName(lastName));
+		}
+		throw new NameNotFoundException();
 	}
 
 	@Transactional
