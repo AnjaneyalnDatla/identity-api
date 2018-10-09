@@ -39,6 +39,7 @@ public class LoginController {
 			credentials = findPerson.findPersonByCredentials(new ObjectMapper().readValue(jsonBody, Credentials.class));
 			return Response.status(Response.Status.OK.getStatusCode()).entity(toJsonString(credentials)).build();
 		} catch (IOException e) {
+			log.error(e.getMessage());
 			return Response.status(Response.Status.BAD_REQUEST.getStatusCode()).build();
 		} catch (NameNotFoundException e) {
 			return Response.status(Response.Status.UNAUTHORIZED.getStatusCode()).build();
