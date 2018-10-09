@@ -52,10 +52,10 @@ public class PersonController {
 	}
 
 	@GET
-	@Path("/name?firstName={firstName}")
+	@Path("/name")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response findAllPersonsByFirstName(@QueryParam("firstName") String firstName) {
-		log.info("first name : " + firstName);
+		log.info("First Name : " + firstName);
 		List<Person> listOfPersons = null;
 		try {
 			listOfPersons = findPerson.findAllPersonByFirstName(firstName);
@@ -66,10 +66,10 @@ public class PersonController {
 	}
 
 	@GET
-	@Path("/name?lastName={lastName}")
+	@Path("/name")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response findAllPersonsByLastName(@QueryParam("lastName") String lastName) {
-		log.info("last name : " + lastName);
+		log.info("Last Name : " + lastName);
 		List<Person> listOfPersons = null;
 		try {
 			listOfPersons = findPerson.findAllPersonByLastName(lastName);
