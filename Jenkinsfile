@@ -20,15 +20,7 @@ pipeline{
                 sh './gradlew build -x test'
 			}
 		}
-		stage("IMAGE"){
-			steps{
-					sh 'whoami'
-					sh 'docker stop identity-api || true && docker rm identity-api || true docker rmi $(docker images |grep identity-api) || true'				
-					sh 'docker build -t identity-api:${BUILD_NUMBER} .'
-					
-			}
-		}
-		 // creating runnable jar
+		// creating runnable jar
         stage('PUBLISH'){
         	environment {
 				DOCKER_NEXUS_CREDS = credentials('nexus')
@@ -41,7 +33,14 @@ pipeline{
 				//sh 'docker push ${NEXUS_REPO_URL}/${JOB_NAME}:${BUILD_NUMBER}'
             }
         }
-		
+		stage("IMAGE"){
+			steps{
+					sh 'whoami'
+					sh 'docker stop identity-api || true && docker rm identity-api || true docker rmi $(docker images |grep identity-api) || true'				
+					sh 'docker build -t identity-api:${BUILD_NUMBER} .'
+					
+			}
+		}
 		stage("RUN"){
 			steps{
 					sh 'docker run -d --name identity-api -p 8085:8080 identity-api:${BUILD_NUMBER}'
