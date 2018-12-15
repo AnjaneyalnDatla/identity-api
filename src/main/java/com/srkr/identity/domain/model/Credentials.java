@@ -9,6 +9,7 @@ public class Credentials extends AssertionConcern implements Serializable {
 	private static final int MAX_EMAIL_LENGTH = 100;
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String userName;
 	private String password;
 	private Person person;
@@ -24,6 +25,24 @@ public class Credentials extends AssertionConcern implements Serializable {
 		checkPassword(password);
 		this.password = password;
 		this.person = person;
+	}
+	
+	public Credentials(Long id, String username, String password, Person person) {
+		super();
+		checkUserName(username);
+		this.id = id;
+		this.userName = username;
+		checkPassword(password);
+		this.password = password;
+		this.person = person;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getUserName() {

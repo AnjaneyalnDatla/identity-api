@@ -71,7 +71,7 @@ public class PersonMapper {
 			labs.add(lab2);
 		}
 		com.srkr.identity.domain.model.Department department = new com.srkr.identity.domain.model.Department(
-				pgPerson.getDepartment().getName(), pgPerson.getDepartment().getDescription(), labs);
+				pgPerson.getDepartment().getId(), pgPerson.getDepartment().getName(), pgPerson.getDepartment().getDescription(), labs);
 
 		Set<com.srkr.identity.domain.model.Address> addresses = new HashSet<>();
 		for (Address address : pgPerson.getAddresses()) {
