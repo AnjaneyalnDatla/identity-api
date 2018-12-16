@@ -18,7 +18,7 @@ public class CredentialsMapper {
 	}
 
 	public com.srkr.identity.domain.model.Credentials toDomainObject(Credentials credentials) {
-		return new com.srkr.identity.domain.model.Credentials(credentials.getUserName(), credentials.getPassword(),
+		return new com.srkr.identity.domain.model.Credentials(credentials.getId(),credentials.getUserName(), credentials.getPassword(),
 				(null != credentials.getPerson() ? personMapper.toDomainObject(credentials.getPerson()) : null));
 	}
 

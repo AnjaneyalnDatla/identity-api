@@ -10,6 +10,7 @@ public class Person extends AssertionConcern implements Serializable {
 	private static final Integer MAX_NAME_LENGTH = 32;
 	public static final int MAX_EMAIL_LENGTH = 100;
 
+	private Long id;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -41,10 +42,11 @@ public class Person extends AssertionConcern implements Serializable {
 
 	}
 
-	public Person(String firstName, String middleName, String lastName, String cellPhone, String homePhone,
+	public Person(Long id,String firstName, String middleName, String lastName, String cellPhone, String homePhone,
 			String officePhone, String emailAddress, Organization organization, Department department,
 			String designation, PersonRole personRole, Person supervisior, Set<Address> addresses) {
 		super();
+		this.id = id;
 		checkName(firstName, "First Name");
 		this.firstName = firstName;
 		this.middleName = middleName;
@@ -65,6 +67,10 @@ public class Person extends AssertionConcern implements Serializable {
 		this.supervisor = supervisior;
 		checkAddress(addresses);
 		this.addresses = addresses;
+	}
+	
+	public Long id() {
+		return this.id;
 	}
 
 	public String firstName() {

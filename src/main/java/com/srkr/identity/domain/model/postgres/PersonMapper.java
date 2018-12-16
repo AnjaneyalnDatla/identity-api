@@ -82,7 +82,7 @@ public class PersonMapper {
 			addresses.add(address2);
 		}
 
-		com.srkr.identity.domain.model.Person person = new com.srkr.identity.domain.model.Person(
+		com.srkr.identity.domain.model.Person person = new com.srkr.identity.domain.model.Person(pgPerson.getId(),
 				pgPerson.getFirstName(), pgPerson.getMiddleName(), pgPerson.getLastName(), pgPerson.getCellPhone(),
 				pgPerson.getHomePhone(), pgPerson.getOfficePhone(), pgPerson.getEmailAddress(),
 				new Organization(pgPerson.getOrganization().getName(), pgPerson.getOrganization().getDescription(),

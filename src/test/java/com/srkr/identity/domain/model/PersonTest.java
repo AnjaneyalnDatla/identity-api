@@ -28,7 +28,7 @@ public class PersonTest {
 		addresses.add(address2);
 		Person supervisor = new Person(new String("Anjaneya"), new String("Datla"), new String("9769098780"), 
 				new String("anjaneya@gmail.com"), organization, department, new String ("designation"));
-		Person person = new Person(new String("Sneha"),new String(""),new String("Gokaraju"),
+		Person person = new Person(1l,new String("Sneha"),new String(""),new String("Gokaraju"),
 				new String("9876500110"), new String("9876500110"),new String("9876500110"),
 				new String("sneha92@gmail.com"),organization,department,new String("designation"),
 				personrole,supervisor,addresses);
