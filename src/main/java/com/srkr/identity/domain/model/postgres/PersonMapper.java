@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.srkr.identity.domain.model.Country;
@@ -14,6 +15,9 @@ import com.srkr.identity.domain.model.ZipCode;
 
 @Service
 public class PersonMapper {
+
+	@Autowired
+	private DepartmentMapper departmentMapper;
 
 	public Person toPostgresObject(com.srkr.identity.domain.model.Person person) {
 		Person pgPerson = new Person();
@@ -39,14 +43,7 @@ public class PersonMapper {
 		Department department = new Department();
 		department.setName(person.department().name());
 		department.setDescription(person.department().description());
-		Set<Lab> labs = new HashSet<>();
-		for (com.srkr.identity.domain.model.Lab lab : person.department().labs()) {
-			Lab lab2 = new Lab();
-			lab2.setName(lab.name());
-			lab2.setDescription(lab.description());
-			labs.add(lab2);
-		}
-		department.setLabs(labs);
+
 		pgPerson.setDepartment(department);
 		PersonRole personRole = new PersonRole();
 		personRole.setName(person.personRole().name());
@@ -64,14 +61,9 @@ public class PersonMapper {
 			return null;
 		}
 
-		Set<com.srkr.identity.domain.model.Lab> labs = new HashSet<>();
-		for (Lab lab : pgPerson.getDepartment().getLabs()) {
-			com.srkr.identity.domain.model.Lab lab2 = new com.srkr.identity.domain.model.Lab(lab.getName(),
-					lab.getDescription());
-			labs.add(lab2);
-		}
 		com.srkr.identity.domain.model.Department department = new com.srkr.identity.domain.model.Department(
-				pgPerson.getDepartment().getId(), pgPerson.getDepartment().getName(), pgPerson.getDepartment().getDescription(), labs);
+				pgPerson.getDepartment().getId(), pgPerson.getDepartment().getName(),
+				pgPerson.getDepartment().getDescription());
 
 		Set<com.srkr.identity.domain.model.Address> addresses = new HashSet<>();
 		for (Address address : pgPerson.getAddresses()) {
@@ -82,16 +74,19 @@ public class PersonMapper {
 			addresses.add(address2);
 		}
 
+		Organization organization = new Organization(pgPerson.getOrganization().getName(),
+				pgPerson.getOrganization().getDescription(),
+				new com.srkr.identity.domain.model.Address(pgPerson.getOrganization().getStreetAddress(),
+						pgPerson.getOrganization().getCity(),
+						State.valueOfAbbreviation(pgPerson.getOrganization().getState()),
+						new ZipCode(pgPerson.getOrganization().getZipcode() + ""),
+						pgPerson.getOrganization().getLandmark(),
+						Country.valueOfAbbreviation(pgPerson.getOrganization().getCountry())),
+				this.departmentMapper.toListDomainObjects(pgPerson.getOrganization().getDepartments()));
+
 		com.srkr.identity.domain.model.Person person = new com.srkr.identity.domain.model.Person(pgPerson.getId(),
 				pgPerson.getFirstName(), pgPerson.getMiddleName(), pgPerson.getLastName(), pgPerson.getCellPhone(),
-				pgPerson.getHomePhone(), pgPerson.getOfficePhone(), pgPerson.getEmailAddress(),
-				new Organization(pgPerson.getOrganization().getName(), pgPerson.getOrganization().getDescription(),
-						new com.srkr.identity.domain.model.Address(pgPerson.getOrganization().getStreetAddress(),
-								pgPerson.getOrganization().getCity(),
-								State.valueOfAbbreviation(pgPerson.getOrganization().getState()),
-								new ZipCode(pgPerson.getOrganization().getZipcode() + ""),
-								pgPerson.getOrganization().getLandmark(),
-								Country.valueOfAbbreviation(pgPerson.getOrganization().getCountry()))),
+				pgPerson.getHomePhone(), pgPerson.getOfficePhone(), pgPerson.getEmailAddress(), organization,
 				department, pgPerson.getDesignation(),
 				new com.srkr.identity.domain.model.PersonRole(pgPerson.getPersonRole().getName(),
 						pgPerson.getPersonRole().getDescription()),

@@ -3,8 +3,6 @@ package com.srkr.identity.domain.model;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 public class Credentials extends AssertionConcern implements Serializable {
 	private static final int MAX_EMAIL_LENGTH = 100;
 	private static final long serialVersionUID = 1L;
@@ -26,7 +24,7 @@ public class Credentials extends AssertionConcern implements Serializable {
 		this.password = password;
 		this.person = person;
 	}
-	
+
 	public Credentials(Long id, String username, String password, Person person) {
 		super();
 		checkUserName(username);
@@ -36,11 +34,11 @@ public class Credentials extends AssertionConcern implements Serializable {
 		this.password = password;
 		this.person = person;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -50,7 +48,8 @@ public class Credentials extends AssertionConcern implements Serializable {
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		if (null != userName)
+			this.userName = userName.toUpperCase();
 	}
 
 	public String getPassword() {

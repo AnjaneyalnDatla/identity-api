@@ -1,40 +1,49 @@
 package com.srkr.identity.domain.model.postgres;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table (name="Department")
-public class Department {
-	
+@Table(name = "department")
+public class Department implements java.io.Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6001582997732280812L;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String description;
 
-	@ManyToMany(cascade = {CascadeType.ALL})
-	@JoinTable(name="DEPARTMENT_LAB",
-				joinColumns= {@JoinColumn(referencedColumnName="id")},
-				inverseJoinColumns={@JoinColumn(name="lab_id",referencedColumnName="id")})
-	private Set<Lab> labs = new HashSet<Lab>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "organisationid")
+	private Organisation organisation;
+
+	public Department() {
+	}
+
+	public Department(Long id, String name, String description, Organisation organisation) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.organisation = organisation;
+	}
 
 	public Long getId() {
 		return id;
@@ -60,12 +69,12 @@ public class Department {
 		this.description = description;
 	}
 
-	public Set<Lab> getLabs() {
-		return labs;
+	public Organisation getOrganisation() {
+		return organisation;
 	}
 
-	public void setLabs(Set<Lab> labs) {
-		this.labs = labs;
-	}	
-	
+	public void setOrganisation(Organisation organisation) {
+		this.organisation = organisation;
+	}
+
 }

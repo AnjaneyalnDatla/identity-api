@@ -1,46 +1,68 @@
 package com.srkr.identity.domain.model.postgres;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="Organisation")
-public class Organisation {
-	
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+@Table(name = "organisation")
+public class Organisation implements java.io.Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5048913118610595198L;
+
 	private Long id;
-	
-	@Column(name="name")
+
 	private String name;
-	
-	@Column(name="description")
+
 	private String description;
-	
-	@Column(name="streetaddress")
+
 	private String streetAddress;
-	
-	@Column(name="city")
+
 	private String city;
-	
-	@Column(name="state")
+
 	private String state;
-	
-	@Column(name="zipcode")
+
 	private int zipcode;
-	
-	@Column(name="country")
+
 	private String country;
-	
-	@Column(name="landmark")
+
 	private String landmark;
 
+	private Set<Department> departments = new HashSet<>();
+
+	public Organisation() {
+
+	}
+
+	public Organisation(Long id, String name, String description, String streetAddress, String city, String state,
+			int zipcode, String country, String landmark, Set<Department> departments) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zipcode;
+		this.country = country;
+		this.landmark = landmark;
+		this.departments = departments;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	public Long getId() {
 		return id;
 	}
@@ -49,6 +71,7 @@ public class Organisation {
 		this.id = id;
 	}
 
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -57,6 +80,7 @@ public class Organisation {
 		this.name = name;
 	}
 
+	@Column(name = "description")
 	public String getDescription() {
 		return description;
 	}
@@ -65,6 +89,7 @@ public class Organisation {
 		this.description = description;
 	}
 
+	@Column(name = "streetaddress")
 	public String getStreetAddress() {
 		return streetAddress;
 	}
@@ -73,6 +98,7 @@ public class Organisation {
 		this.streetAddress = streetAddress;
 	}
 
+	@Column(name = "city")
 	public String getCity() {
 		return city;
 	}
@@ -81,6 +107,7 @@ public class Organisation {
 		this.city = city;
 	}
 
+	@Column(name = "state")
 	public String getState() {
 		return state;
 	}
@@ -89,6 +116,7 @@ public class Organisation {
 		this.state = state;
 	}
 
+	@Column(name = "zipcode")
 	public int getZipcode() {
 		return zipcode;
 	}
@@ -97,6 +125,7 @@ public class Organisation {
 		this.zipcode = zipcode;
 	}
 
+	@Column(name = "country")
 	public String getCountry() {
 		return country;
 	}
@@ -105,12 +134,22 @@ public class Organisation {
 		this.country = country;
 	}
 
+	@Column(name = "landmark")
 	public String getLandmark() {
 		return landmark;
 	}
 
 	public void setLandmark(String landmark) {
 		this.landmark = landmark;
+	}
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "organisation", orphanRemoval = true)
+	public Set<Department> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(Set<Department> departments) {
+		this.departments = departments;
 	}
 
 }

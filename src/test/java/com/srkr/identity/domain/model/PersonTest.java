@@ -14,12 +14,9 @@ public class PersonTest {
 	@Test
 	public void testPerson() {
 		
-		Organization organization = new Organization(new String ("name"), new String ("description"),Address.emptyDefault());
-		Set<Lab> labs = new HashSet<>();
-		Lab lab = new Lab(new String("LabName"), new String("LabDescription"));
-		labs.add(lab);
+		Organization organization = new Organization(new String ("name"), new String ("description"),Address.emptyDefault(),null);
 		Department department = new Department(new String("Civil engineering"), 
-				new String("deals with the design, construction, and maintenance of the physical and naturally built environment"),labs);
+				new String("deals with the design, construction, and maintenance of the physical and naturally built environment"));
 		PersonRole personrole = new PersonRole(new String("name"), new String("description"));
 		Set <Address> addresses = new HashSet<>();
 		Address address = Address.emptyDefault();

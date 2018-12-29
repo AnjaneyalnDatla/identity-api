@@ -14,10 +14,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.srkr.identity.domain.model.postgres.Address;
 import com.srkr.identity.domain.model.postgres.Department;
-import com.srkr.identity.domain.model.postgres.Lab;
 import com.srkr.identity.domain.model.postgres.Organisation;
 import com.srkr.identity.domain.model.postgres.Person;
 import com.srkr.identity.domain.model.postgres.PersonRole;
@@ -25,6 +25,7 @@ import com.srkr.identity.domain.model.postgres.PostgresPersonRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class PostgresPersonRepositoryTest {
 
 	@Autowired
@@ -68,12 +69,6 @@ public class PostgresPersonRepositoryTest {
 		Department department = new Department();
 		department.setName("DepartmentNameTest");
 		department.setDescription("DepartmentDescriptionTest");
-		Set<Lab> labs = new HashSet<>();
-		Lab lab = new Lab();
-		lab.setName("LabNameTest");
-		lab.setDescription("LabDescriptionTest");
-		labs.add(lab);
-		department.setLabs(labs);
 		person.setDepartment(department);
 
 		PersonRole personRole = new PersonRole();
@@ -83,14 +78,6 @@ public class PostgresPersonRepositoryTest {
 
 		person.setDesignation("DesignationTest");
 	}
-
-/*	@Test
-	public void saveTest() {
-		Person person = personRepository.save(this.person);
-		assertNotNull(person.getId());
-		assertNotNull(person.getCellPhone());
-
-	}*/
 
 	@Test
 	public void deleteTest() {

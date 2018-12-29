@@ -10,7 +10,7 @@ public class OrganizationTest {
 	@Test
 	public void testOrganization() {
 		
-		Organization organization = new Organization(new String("SRKR"),new String("Org Description"), Address.emptyDefault());
+		Organization organization = new Organization(new String("SRKR"),new String("Org Description"), Address.emptyDefault(),null);
 		assertEquals("SRKR", organization.name());
 		assertEquals("Org Description", organization.description());
 		assertNotNull(organization.address());
