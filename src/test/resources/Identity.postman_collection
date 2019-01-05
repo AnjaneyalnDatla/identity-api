@@ -1,100 +1,74 @@
 {
-	"id": "a6f100d8-359e-b6c1-da82-e7097b63ad2a",
-	"name": "Identity",
-	"description": "",
-	"order": [
-		"d2ce37a1-3682-f859-2ea9-d366381a46f7",
-		"10e709a0-1251-f07c-d774-04fa4c6d6b0b",
-		"a8fe4fa2-28d0-51b0-875b-1bcabfaa83e1"
-	],
-	"folders": [],
-	"folders_order": [],
-	"timestamp": 1538785193845,
-	"owner": 0,
-	"public": false,
-	"requests": [
+	"variables": [],
+	"info": {
+		"name": "Identity",
+		"_postman_id": "a6f100d8-359e-b6c1-da82-e7097b63ad2a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
 		{
-			"id": "10e709a0-1251-f07c-d774-04fa4c6d6b0b",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/identity/validate",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1538790032698,
-			"name": "validatecreds",
-			"description": "",
-			"collectionId": "a6f100d8-359e-b6c1-da82-e7097b63ad2a",
-			"responses": [],
-			"rawModeData": "{\n\t\"userName\":\"admin@admin.com\",\n\t\"password\":\"Admin123!\",\n\t\"person\":null\n}"
-		},
-		{
-			"id": "a8fe4fa2-28d0-51b0-875b-1bcabfaa83e1",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:8080/identity/person/name?firstName=FirstNameTest",
-			"queryParams": [
-				{
-					"key": "firstName",
-					"value": "FirstNameTest",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "a6f100d8-359e-b6c1-da82-e7097b63ad2a",
-			"data": null,
-			"dataMode": "params",
-			"name": "nameSearch",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1539048437171,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
-		},
-		{
-			"id": "d2ce37a1-3682-f859-2ea9-d366381a46f7",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:8080/identity/health",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "a6f100d8-359e-b6c1-da82-e7097b63ad2a",
-			"data": null,
-			"dataMode": "params",
 			"name": "healthCheck",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1538785195660,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {}
+			"request": {
+				"url": "http://localhost:8080/identity/health",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "validatecreds",
+			"request": {
+				"url": "http://localhost:8080/identity/validate",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"admin@admin.com\",\n\t\"password\":\"Admin123!\",\n\t\"person\":null\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "nameSearch",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/identity/person/name?firstName=FirstNameTest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"identity",
+						"person",
+						"name"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "FirstNameTest",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }

@@ -14,5 +14,5 @@ public interface PostgresPersonRepository extends Repository<Person, Long>{
 	List<Person> findByFirstName(String firstName);
 	
 	List<Person> findByLastName(String lastName);
-
+	
 }
