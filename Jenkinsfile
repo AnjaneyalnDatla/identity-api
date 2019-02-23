@@ -8,19 +8,7 @@ pipeline{
                 sh './gradlew build -x test'
 			}
 		}
-		// creating runnable jar
-        stage('PUBLISH'){
-        	environment {
-				DOCKER_NEXUS_CREDS = credentials('nexus')
-            }
-            steps{
-                sh './gradlew bootJar -x test'
-                //sh './gradlew uploadBootArchives -x test'
-                //commenting out temporarily
-                //sh 'docker login --username $DOCKER_NEXUS_CREDS_USR --password $DOCKER_NEXUS_CREDS_PSW ${NEXUS_REPO_URL}'
-				//sh 'docker push ${NEXUS_REPO_URL}/${JOB_NAME}:${BUILD_NUMBER}'
-            }
-        }
+	
 		stage("IMAGE"){
 			steps{
 					sh 'whoami'
