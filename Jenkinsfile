@@ -11,6 +11,7 @@ pipeline{
 	
 		stage("IMAGE"){
 			steps{
+                    sh './gradlew bootJar -x test'
 					sh 'whoami'
 					sh 'docker stop identity-api || true && docker rm identity-api || true docker rmi $(docker images |grep identity-api) || true'				
 					sh 'docker build -t identity-api:${BUILD_NUMBER} .'
