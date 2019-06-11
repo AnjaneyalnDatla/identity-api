@@ -5,8 +5,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://68.183.156.146:5432/identity
-    username: postgres
-    password: postgres
+    username: XXX
+    password: XXX
     hikari:
       connection-timeout: 30000
       idle-timeout: 180000
